@@ -1,44 +1,104 @@
-# Bitcore Monorepo
+# Bitcore JavaScript Library for Bitcoin
 
-  <p align="center">
-  <img alt="npm" src="https://img.shields.io/npm/v/bitcore-lib">
-  <img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/m/bitpay/bitcore">
-  <a href="https://opensource.org/licenses/MIT/" target="_blank"><img alt="MIT License" src="https://img.shields.io/badge/License-MIT-blue.svg" style="display: inherit;"/></a>
-  <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/bitpay/bitcore">
-  <br>
- <img src="https://circleci.com/gh/bitpay/bitcore.svg?style=shield" alt="master build">
-</p>
-  
-**Infrastructure to build Bitcoin and blockchain-based applications for the next generation of financial technology.**
+[![NPM Package](https://img.shields.io/npm/v/bitcore-lib.svg?style=flat-square)](https://www.npmjs.org/package/bitcore-lib)
+[![Build Status](https://img.shields.io/travis/bitpay/bitcore-lib.svg?branch=master&style=flat-square)](https://travis-ci.org/bitpay/bitcore-lib)
+[![Coverage Status](https://img.shields.io/coveralls/bitpay/bitcore-lib.svg?style=flat-square)](https://coveralls.io/r/bitpay/bitcore-lib)
 
-## Applications
+**A pure and powerful JavaScript library for Bitcoin.**
 
-- [Bitcore Node](packages/bitcore-node) - A full node with extended capabilities using Bitcoin Core
-- [Bitcore Wallet](packages/bitcore-wallet) - A command-line based wallet client
-- [Bitcore Wallet Client](packages/bitcore-wallet-client) - A client for the wallet service
-- [Bitcore Wallet Service](packages/bitcore-wallet-service) - A multisig HD service for wallets
-- [Bitpay Wallet](https://github.com/bitpay/copay) - An easy-to-use, multiplatform, multisignature, secure bitcoin wallet
-- [Insight](packages/insight) - A blockchain explorer web user interface
+## Principles
 
-## Libraries
+Bitcoin is a powerful new peer-to-peer platform for the next generation of financial technology. The decentralized nature of the Bitcoin network allows for highly resilient bitcoin infrastructure, and the developer community needs reliable, open-source tools to implement bitcoin apps and services. Bitcore JavaScript Library provides a reliable API for JavaScript apps that need to interface with Bitcoin.
 
-- [Bitcore Channel](https://github.com/bitpay/bitcore-channel) - Micropayment channels for rapidly adjusting bitcoin transactions
-- [Bitcore ECIES](https://github.com/bitpay/bitcore-ecies) - Uses ECIES symmetric key negotiation from public keys to encrypt arbitrarily long data streams
-- [Bitcore Lib](packages/bitcore-lib) - A powerful JavaScript library for Bitcoin
-- [Bitcore Lib Cash](packages/bitcore-lib-cash) - A powerful JavaScript library for Bitcoin Cash
-- [Bitcore Lib Doge](packages/bitcore-lib-doge) - A powerful JavaScript library for Dogecoin
-- [Bitcore Lib Litecoin](packages/bitcore-lib-ltc) - A powerful JavaScript library for Litecoin
-- [Bitcore Message](https://github.com/bitpay/bitcore-message) - Bitcoin message verification and signing
-- [Bitcore Mnemonic](packages/bitcore-mnemonic) - Implements mnemonic code for generating deterministic keys
-- [Bitcore P2P](packages/bitcore-p2p) - The peer-to-peer networking protocol for Bitcoin
-- [Bitcore P2P Cash](packages/bitcore-p2p-cash) - The peer-to-peer networking protocol for Bitcoin Cash
-- [Bitcore P2P Doge](packages/bitcore-p2p-doge) **DEPRECATED**[^1] - The peer-to-peer networking protocol for Dogecoin
-- [Crypto Wallet Core](packages/crypto-wallet-core) - A coin-agnostic wallet library for creating transactions, signing, and address derivation
+## Get Started
 
-## Extras
+Clone the Bitcore monorepo and `npm install`:
+```sh
+git clone https://github.com/bitpay/bitcore.git
+npm install
+```
+`cd` into bitcore-lib repository:
+```sh
+cd packages/bitcore-lib
+```
 
-- [Bitcore Build](packages/bitcore-build) - A helper to add tasks to gulp
-- [Bitcore Client](packages/bitcore-client) - A helper to create a wallet using the bitcore-v8 infrastructure
+## Building the Browser Bundle
+
+To build a bitcore-lib full bundle for the browser:
+
+```sh
+gulp browser
+```
+
+This will generate files named `bitcore-lib.js` and `bitcore-lib.min.js`.
+
+## Running Tests
+
+```sh
+npm test
+```
+
+You can also run just the Node.js tests with `gulp test:node`, just the browser tests with `gulp test:browser` or create a test coverage report (you can open `coverage/lcov-report/index.html` to visualize it) with `gulp coverage`.
+
+## Documentation 
+
+### Addresses and Key Management
+
+- [Addresses](docs/address.md)
+- [Using Different Networks](docs/networks.md)
+- [Private Keys](docs/privatekey.md) and [Public Keys](docs/publickey.md)
+- [Hierarchically-derived Private and Public Keys](docs/hierarchical.md)
+
+### Payment Handling
+
+- [Using Different Units](docs/unit.md)
+- [Acknowledging and Requesting Payments: Bitcoin URIs](docs/uri.md)
+- [The Transaction Class](docs/transaction.md)
+- [Unspent Transaction Output Class](docs/unspentoutput.md)
+
+### Bitcoin Internals
+
+- [Scripts](docs/script.md)
+- [Block](docs/block.md)
+
+### Extra
+
+- [Crypto](docs/crypto.md)
+- [Encoding](docs/encoding.md)
+
+### Module Development
+
+- [Browser Builds](docs/browser.md)
+
+### Modules
+
+Some functionality is implemented as a module that can be installed separately:
+
+- [Peer to Peer Networking](https://github.com/bitpay/bitcore/tree/master/packages/bitcore-p2p)
+- [Bitcoin Core JSON-RPC](https://github.com/bitpay/bitcoind-rpc)
+- [Payment Channels](https://github.com/bitpay/bitcore-channel)
+- [Mnemonics](https://github.com/bitpay/bitcore/tree/master/packages/bitcore-mnemonic)
+- [Elliptical Curve Integrated Encryption Scheme](https://github.com/bitpay/bitcore-ecies)
+- [Blockchain Explorers](https://github.com/bitpay/bitcore-explorers)
+- [Signed Messages](https://github.com/bitpay/bitcore-message)
+
+## Examples
+
+- [Generate a random address](docs/examples.md#generate-a-random-address)
+- [Generate a address from a SHA256 hash](docs/examples.md#generate-a-address-from-a-sha256-hash)
+- [Import an address via WIF](docs/examples.md#import-an-address-via-wif)
+- [Create a Transaction](docs/examples.md#create-a-transaction)
+- [Sign a Bitcoin message](docs/examples.md#sign-a-bitcoin-message)
+- [Verify a Bitcoin message](docs/examples.md#verify-a-bitcoin-message)
+- [Create an OP RETURN transaction](docs/examples.md#create-an-op-return-transaction)
+- [Create a 2-of-3 multisig P2SH address](docs/examples.md#create-a-2-of-3-multisig-p2sh-address)
+- [Spend from a 2-of-2 multisig P2SH address](docs/examples.md#spend-from-a-2-of-2-multisig-p2sh-address)
+
+## Security
+
+We're using the Bitcore JavaScript Library in production, as are many others, but please use common sense when doing anything related to finances! We take no responsibility for your implementation decisions.
+
+If you find a security issue, please email security@bitpay.com.
 
 ## Contributing
 
@@ -49,5 +109,3 @@ See [CONTRIBUTING.md](https://github.com/bitpay/bitcore/blob/master/Contributing
 Code released under [the MIT license](https://github.com/bitpay/bitcore/blob/master/LICENSE).
 
 Copyright 2013-2022 BitPay, Inc. Bitcore is a trademark maintained by BitPay, Inc.
-
-[^1]: The Bitcore P2P Doge library is no longer maintained as all the core functionality is contained in Bitcore P2P
